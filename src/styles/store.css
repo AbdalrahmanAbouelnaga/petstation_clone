@@ -1,0 +1,258 @@
+#content {
+    display: table;
+}
+
+#content > h3 {
+    margin-top: 4rem;
+font-size: 1.5rem;
+text-align: center;
+}
+
+.sidebar {
+    display: table-cell;
+    width: 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.main-content {
+    display: table;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    text-transform: capitalize;
+    font-weight: 500;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.page-header {
+    border-bottom: 1px lightgray solid;
+padding-bottom: 9px;
+margin: 40px 0 20px;
+margin-top: 0;  
+}
+
+.panel-heading {
+    background-color: #59a890;
+border-color: #59a890;
+color: #fff;
+margin-top: 0;
+margin-bottom: 0;
+padding: 10px 15px;
+border-top-right-radius: 3px;
+border-top-left-radius: 3px;
+}
+
+.panel-heading h3 {
+    font-size: 16px;
+    
+}
+
+
+.list-group-item {
+    position: relative;
+display: block;
+padding: 10px 15px;
+margin-bottom: -1px;
+background-color: #fff;
+border: 1px solid #ddd;
+
+}
+
+
+.product {
+    width: 25%;
+text-align: center;
+}
+.product .caption {
+    padding: 15px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 15rem;
+align-items: center;
+  }
+
+
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.product-img {
+max-width: 100%;
+}
+
+.product-title {
+    font-size: 14px;
+line-height: 1.4;
+}
+
+.cart-button {
+    display: inline-block;
+width: 168px;
+border: none;
+height: 38px;
+padding: 0;
+text-align: center;
+line-height: 38px;
+background-color: #59a890;
+border-radius: 0;
+text-transform: uppercase;
+font-weight: 600;
+font-size: 14px;
+max-width: 100%;
+color: white;
+}
+
+.price {
+    font-size: 18px;
+height: 30px;
+color: #f2917e;
+font-weight: 600;
+overflow: hidden;
+}
+
+
+.size-list {
+    margin: 0 auto;
+display: table;
+border-spacing: 5px;
+}
+
+.size {
+    display: table-cell;
+border: 1px solid #efefef;
+padding: 3px;
+font-size: 12px;
+text-transform: uppercase;
+cursor: pointer;
+vertical-align: middle;
+text-align: center;
+}
+
+
+.size a {
+    color: #59a890;
+}
+
+.product-title a {
+    color: #334f6b;
+}
+
+.product-title a:hover {
+    color: #59a890;
+}
+
+.product:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+  }
+
+
+
+  .bread-crumb {
+    text-transform: uppercase;
+    line-height: 0;
+    color: #334f6b;
+  }
+  .bread-crumb:hover {
+    text-decoration: underline;
+  }
+
+
+.bread-crumbs {
+    padding: 10px 15px;
+}
+.bread-crumbs svg, .bread-crumbs img {
+    vertical-align: middle;
+}
+
+
+.list-group-item #price-range span {
+    position: absolute;
+z-index: 2;
+width: 1.2em;
+height: 1.2em;
+cursor: default;
+border: 1px solid #d3d3d3;
+background: #e6e6e6 url(../ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
+font-weight: normal;
+color: #555555;
+top: -.3em;
+margin-left: -.6em;
+border-radius: 4px;
+}
+
+
+.list-group-item #price-range span:hover {
+    border: 1px solid #777777;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.list-group-item #price-range {
+    height: .8em;
+position: relative;
+text-align: left;
+margin: 0;
+border: 1px solid #aaaaaa;
+background: #ffffff url(../ui-bg_glass_75_ffffff_1x400.png) 50% 50% repeat-x;
+color: #222222;
+}
+
+.list-group-item #price-range div {
+    width: 100%;
+height: 100%;
+position: absolute;
+z-index: 1;
+font-size: .7em;
+display: block;
+border: 0;
+top: 0;
+background-color: #eee;
+}
+
+
+
+
+.list-group-item form button {
+    color: rgba(255, 255, 255, 1);
+background-color: rgba(89, 168, 144, 1);
+border-color: rgba(89, 168, 144, 1);
+padding: 1px 5px;
+font-size: 12px;
+line-height: 1.5;
+border-radius: 3px;
+display: inline-block;
+margin-bottom: 0;
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+touch-action: manipulation;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+border-top-color: transparent;
+border-right-color: transparent;
+border-bottom-color: transparent;
+border-left-color: transparent;
+white-space: nowrap;
+}
+
+
+.list-group-item form button:hover {
+    color: rgba(255, 255, 255, 1);
+background-color: rgba(51, 79, 107, 1);
+border-color: rgba(51, 79, 107, 1);
+}
