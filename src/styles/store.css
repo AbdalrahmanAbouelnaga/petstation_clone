@@ -170,6 +170,11 @@ text-align: center;
 .bread-crumbs {
     padding: 10px 15px;
 }
+.crumbs-container {
+    background-color: #f6f6f6;
+height: 50px;
+margin-bottom: 45px;
+}
 .bread-crumbs svg, .bread-crumbs img {
     vertical-align: middle;
 }

@@ -1,0 +1,210 @@
+.product-main {
+    padding-left: 15px;
+padding-right: 15px;
+position: relative;
+}
+
+.product-main .left {
+    width: 50%;
+position: relative;
+text-align: center;
+border: 1px solid #eee;
+float: left;
+}
+
+.product-main .left img {
+    width: 500px;
+padding-left: 15px;
+padding-right: 15px;
+vertical-align: middle;
+}
+.product-main .right {
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    width: 50%;
+}
+
+.product-main .right .title {
+    font-size: 2.2rem;
+font-weight: 700;
+margin: 0;
+color: #334f6b;
+}
+
+.variant-price {
+    font-size: 32px;
+font-weight: 700;
+color: #f2917e;
+line-height: 1;
+}
+
+.variant-price span {
+    color: #59a890;
+font-size: 14px;
+vertical-align: middle;
+padding-left: 20px;
+}
+
+
+.size-text {
+    border: 2px solid #59a890;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    line-height: 30px;
+    padding: 0;
+    border-radius: 5px;
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+.selected {
+background-color: #59a890;
+color: #fff;
+}
+
+.size-choice {
+    display: inline-block;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.size-text:hover {
+    background-color: #59a890;
+color: #fff;
+}
+
+.size-list {
+    width: 100%;
+    padding-top: 10px;
+padding-bottom: 10px;
+}
+
+#qty-input::-webkit-outer-spin-button,
+#qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#qty-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.quantity {
+    width: 127px;
+    position: relative;
+}
+
+
+#qty-input {
+    background-color: #f6f6f6;
+color: #9fa0a2;
+font-size: 14px;
+font-weight: 400;
+height: 50px;
+border: none;
+box-shadow: none;
+line-height: 50px;
+text-align: center;
+padding: 10px 16px;
+border-radius: 6px;
+width: 127px;
+}
+
+.plus-minus-span {
+    width: 25px;
+border-radius: 50%;
+background-color: #59a890;
+height: 25px;
+display: inline-block;
+cursor: pointer;
+position: absolute;
+top: calc(50% - 12.5px);
+font-size: 22px;
+color: #a2a2a2;
+text-align: center;
+}
+
+.plus-minus-span:nth-child(2) {
+    right: 15px;
+}
+.plus-minus-span:first-child {
+    left: 15px;
+}
+
+.plus-minus-span:hover {
+    background-color: #f2917e;
+}
+
+.plus-minus-span svg {
+    line-height: 0;
+margin-top: 5px;
+margin-bottom: 5px;
+color: #fff;
+width: 15px;
+height: 15px;
+}
+
+.label {
+    padding-left: 15px;
+text-transform: uppercase;
+color: #334f6b;
+font-size: 14px;
+font-weight: 500;
+line-height: 1;
+}
+
+.cart-add {
+    padding: 10px 0;
+    display: flex;
+gap: 10px;
+justify-content: center;
+align-items: center;
+}
+
+
+.add-btn {
+    display: block;
+float: left;
+height: 50px;
+width: 100%;
+background-color: #f2917e;
+outline: none;
+border: none;
+border-radius: 6px;
+font-size: 0.9rem;
+font-weight: 600;
+color: #fff;
+text-transform: uppercase;
+}
+
+
+.wishlist a span {
+    width: 50px;
+height: 50px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+border: 1px solid #59a890;
+border-radius: 5px;
+color: #59a890;
+}
+
+.wishlist a span svg {
+    height: 26px;
+}
+
+.wishlist a span:hover {
+    background-color: #59a890;
+    color: #fff;
+
+}
+
+.add-btn:hover {
+
+    background-color: #334f6b;
+
+}

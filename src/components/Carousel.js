@@ -36,14 +36,16 @@ export const Carousel = ({carousel}) => {
       autoplay: true,
       speed: 700,
       autoplaySpeed: 3000,
-      cssEase: "linear"
+      cssEase: "linear",
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
       };
       return (
         <div>
           <Slider {...settings}>
             {
-                carousel.map(item=>(
-                    <a href={item.url} className="carousel-link">
+                carousel.map((item,index)=>(
+                    <a href={item.url} key={index} className="carousel-link">
                         <img src={item.image} alt={item.title} className="carousel-img" />
                     </a>
                 ))

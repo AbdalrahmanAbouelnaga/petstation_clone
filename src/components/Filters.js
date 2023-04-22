@@ -26,24 +26,22 @@ const Filters = ({filters,urlParams}) => {
                         <h4>Filter By {keys[0]}</h4>
                     </li>
                     {
-                        (!(keys[0]=="price")&&(value === null))?filters[keys[0]].map((filter,index)=>(
+                        (!(keys[0]==="price")&&(value === null))?filters[keys[0]].map((filter,index)=>(
                             <li className="list-group-item" key={index}>
                             <a href={window.location.href.includes("?")?window.location.href+`&${keys[0]}=${keys[0]==="brands"?filter.slug:filter}`:window.location.href+`?${keys[0]}=${keys[0]==="brands"?filter.slug:filter}`}>
                                 <FontAwesomeIcon icon={faSquare} style={{marginRight:"5px"}}/>
                                 {keys[0]==="brands"?filter.title:filter}
                                 </a>
                             </li>
-                            )):(!(keys[0]=="price")&&(value !== null))?(
+                            )):(!(keys[0]==="price")&&(value !== null))?(
                                 <li className="list-group-item">
-                            <a href={window.location.href.includes("&")?window.location.href.replace(`&${keys[0]}=${keys[0]==="brands"?filters[keys[0]][0].slug:filters[keys[0]][0]}`,""):window.location.href.replace(`?${keys[0]}=${keys[0]==="brands"?filters[keys[0]][0].slug:filters[keys[0]][0]}`,"")}>
+                            <a href={window.location.href.replace(`${keys[0]}=${keys[0]==="brands"?filters[keys[0]][0].slug:filters[keys[0]][0]}`,"")}>
                                 <FontAwesomeIcon icon={faSquareCheck} style={{marginRight:"5px"}}/>
                                 {keys[0]==="brands"?filters[keys[0]][0].title:filters[keys[0]]}
                                 </a>
                             </li>
                             ):(
-                                <li className="list-group-item">
-                                    <PriceSlider priceRange={filters[keys[0]]}/>
-                                </li>
+                                <PriceSlider priceRange={filters[keys[0]]}/>
                             )
                     }
                 </ul>

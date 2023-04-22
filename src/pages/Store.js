@@ -12,10 +12,7 @@ export const Store = () => {
     const [filter_values,setFilterValues]  = useState({
         sizes:"",
         brands:"",
-        price:{
-            low:"",
-            high:""
-        }
+        price:[]
     })
     useEffect(()=>{
         setFilterValues(()=>(
@@ -38,30 +35,29 @@ export const Store = () => {
 
     const sizes = []
     const brands = []
-    const price = {
-        low: 0
-    }
+    const price = []
     products.forEach((prod)=>{
         if (!brands.includes(prod.brand)){
             brands.push(prod.brand)
         }
-        if (price.high===undefined){
-            price.low = prod.price
-            price.high = prod.price
-        }else if (price.low>prod.price){
-            price.high = price.low
-            price.low = prod.price
-        }else if (price.low<prod.price){
-            price.low = price.high
-            price.high = prod.price
-        }
-        if (prod.has_variants){
-            prod.variants.forEach(variant=>(!sizes.includes(variant.size)?sizes.push(variant.size):null))
-        }else{
-            if (!sizes.includes(prod.size)){
-                sizes.push(prod.size)
-        }
-    }
+        prod.variants.forEach(variant=>{
+            if (price.length===0){
+                price.push(variant.price)
+            }else if (price.length===1 && price[0]<variant.price){
+                price.unshift(variant.price)
+            }else if (price.length===1 && price[0]>variant.price){
+                console.log(price)
+                price.push(variant.price)
+            }else if (price.length>1){
+                if (variant.price>price[1]){
+                    price[1] = variant.price
+                }else if (variant.price < price[0]){
+                    price[0] = variant.price
+                }
+            }
+        })
+        prod.variants.forEach(variant=>(!sizes.includes(variant.size)?sizes.push(variant.size):null))
+
     })
     const filters = [
         {
@@ -87,13 +83,13 @@ export const Store = () => {
                     </a>
                     {
                         (window.location.pathname.endsWith("/")?window.location.pathname.slice(1).slice(0,-1).split("/"):window.location.pathname.slice(1).split("/")).map((item,index)=>(
-                            < >
+                            <div key={index} style={{display:"inline"}}>
                             <FontAwesomeIcon icon={faArrowRight} width={44} key={`arrow-${index}`}/> 
                             <a href={`/${window.location.pathname.slice(1).slice(0,-1).split("/").slice(0,index+1).join("/")}`} key={`bread-${index}`} className="bread-crumb">
                                 {item.replace(/-/g," ")}
                             </a>
                             
-                            </>
+                            </div>
                         ))
                     }
                 </div>
@@ -130,10 +126,10 @@ export const Store = () => {
                             <div className="caption">
                                 <h3 className="product-title">
                                     <a href={product.url}>
-                                        {product.has_variants?`${product.title} - ${product.variants.length} sizes`:`${product.title} - ${product.size}`}  
+                                        {product.has_variants?`${product.title} - ${product.variants.length} sizes`:`${product.title} - ${product.variants[0].size}`}  
                                     </a></h3>
                                 <p className="price">
-                                    {product.has_variants?`From $${product.price}`:`$${product.price}`}
+                                    {product.has_variants?`From $${product.variants[0].price}`:`$${product.variants[0].price}`}
                                 </p>
                                 {
                                     product.has_variants?(
