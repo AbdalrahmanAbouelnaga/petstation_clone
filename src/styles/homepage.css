@@ -94,3 +94,40 @@
     color: white;
 
 }
+.mobile-menu {
+    display: none;
+}
+
+
+@media (max-width:767px){
+    .header .middle,.header .bottom .navbar {
+        display: none;
+    }
+    .mobile-menu {
+        display: flex;
+    }
+}
+
+.mobile-menu {
+    position: relative;
+width: 100%;
+background: #59a890;
+margin: 10px auto 0;
+align-items: center;
+}
+
+.mobile-menu .item {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 5px 0 !important;
+    font-size: 12px;
+    color: white;
+}
+
+.mobile-menu .item svg {
+    font-size: 25px;
+  }
+
+.hidden {
+    display: none !important;
+}

@@ -6,14 +6,19 @@ import Filters from "../components/Filters"
 import home_icon from '../home-icon.png'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useDispatch } from "react-redux"
+import { addToCart } from "../store/slices/cartSlice"
 
-export const Store = () => {
+
+export const Store = ({navData}) => {
     const [urlParams,setUrlParams] = useSearchParams()
     const [filter_values,setFilterValues]  = useState({
         sizes:"",
         brands:"",
         price:[]
     })
+    const dispatch = useDispatch()
+
     useEffect(()=>{
         setFilterValues(()=>(
             {
@@ -46,7 +51,6 @@ export const Store = () => {
             }else if (price.length===1 && price[0]<variant.price){
                 price.unshift(variant.price)
             }else if (price.length===1 && price[0]>variant.price){
-                console.log(price)
                 price.push(variant.price)
             }else if (price.length>1){
                 if (variant.price>price[1]){
@@ -110,6 +114,37 @@ export const Store = () => {
                            <Filters filters={filter} urlParams={urlParams} key={Object.keys(filter)[0]} />
                         ))):null
                 }
+
+            </div>
+            <div className="panel">
+                <div className="panel-heading">
+                    <h3>Categories</h3>
+                </div>
+                <ul className="filter-group">
+                    {
+                        navData.animals?navData.animals.map((animal,index)=>(
+                            <li className="list-group-item cat-filter" key={index}>
+                                <a href={animal.url}>{animal.title}</a>
+                                <ul className=" filter-group cat-subcat-sidemenu">
+                                    {
+                                        animal.categories.map((cat,index)=>(
+                                            <li className="list-group-item" key={index}>
+                                                <a href={cat.url}>{cat.title}</a>
+                                                <ul className=" filter-group cat-subcat-sidemenu">
+                                                    {cat.sub_categories.map((subCat,index)=>(
+                                                        <li className="list-group-item" key={index}>
+                                                            <a href={subCat.url}>{subCat.title}</a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </li>
+                        )):null
+                    }
+                </ul>
             </div>
         </aside>
         <div className="main-content">
@@ -149,7 +184,7 @@ export const Store = () => {
                                         </>
                                     ):(
                                         <form className="cart-button">
-                                            <a className="btn">
+                                            <a className="btn" onClick={()=>{dispatch(addToCart({product,quantity:1,variantIndex:0}))}}>
                                                 Add to cart
                                             </a>
                                         </form>

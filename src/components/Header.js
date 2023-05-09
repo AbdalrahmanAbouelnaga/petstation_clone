@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
 import icon from "../aus-icon.png";
 import logo from "../website_logo.png";
 import searchIcon from "../search-icon.png";
 
-import cartIcon from "../cart-icon.png";
-import axios from "axios";
 import { MegaMenu } from "./MegaMenu";
-const Header = () => {
-  const [navData,setNavData] = useState([])
 
-  useEffect(()=>{
-    axios.get("/navbar")
-         .then(res=>setNavData(res.data))
-         .catch(error=>console.log(error.response.data))
-  },[])
+import Cart from "./Cart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faMinus, faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+const Header = ({navData}) => {
 
   return (
     <header className="header">
@@ -96,22 +91,7 @@ const Header = () => {
                   </span>
                 </form>
               </div>
-              <div className="cart">
-                <a id="cart-btn" className="btn">
-                  <img
-                    src={cartIcon}
-                    style={{
-                      width: "43px",
-                      height: "35px",
-                      paddingRight: "10px",
-                      verticalAlign: "middle",
-                    }}
-                    alt=""
-                  />
-                  <span>Cart</span>
-                  <span className="cart-number">0</span>
-                </a>
-              </div>
+              <Cart />
             </div>
           </div>
         </div>
@@ -119,13 +99,80 @@ const Header = () => {
           <div className="container">
             <div className="navbar-collapse">
               <ul className="navbar-nav">
-                {navData.map((animal,index)=>(
+                {navData.animals?navData.animals.map((animal,index)=>(
                   <MegaMenu animal={animal} key={index} />
-                ))}
+                )):null}
+                <li className="dropdown">
+                  <a href="/specials" className="dropdown-toggle">
+                    Specials
+                  </a>
+                </li>
+                <li className="dropdown">
+                  <a href="/brands" className="dropdown-toggle">
+                    Brands
+                  </a>
+                  <ul className="dropdown-menu">
+                    <div className="full">
+                      {
+                        navData.brands?navData.brands.map((brand,index)=>(
+                          <a href={brand.url} key={index}><img src={brand.image} alt={brand.title} /></a>
+                        )):null
+                      }
+                    </div>
+                  </ul>
+                </li>
               </ul>
             </div>
           </div>
         </div>
+      </div>
+      <div className="burger-main-menu">
+        
+        <div className="mobile-menu">
+          <div id="burger-menu" className="item">
+            <div className="burger" onClick={()=>{document.querySelector("#main-menu").classList.toggle("open");document.querySelector("#main-menu").classList.toggle("close");}}>
+              <FontAwesomeIcon icon={faBars} /><br/>Menu
+            </div>
+        
+          </div>
+          <div id="cart" className="item">
+            <FontAwesomeIcon icon={faShoppingCart} /><br />Cart
+          </div>
+          <div id="account" className="item">
+            <FontAwesomeIcon icon={faUser} /><br />Account
+          </div>
+        </div>
+        <div id="main-menu" className="main-menu close ">
+            <ul className="navbar-menu">
+              <li className="nav-item">
+                <a href="/">Home</a>
+              </li>
+              {
+                navData.animals?navData.animals.map((animal,index)=>(
+                <li className="nav-item" key={index}>
+                <a className="burger-menu-toggle" data-target={animal.title} onClick={(e)=>{document.querySelector(`#${e.currentTarget.dataset.target}`).classList.toggle("hidden");e.currentTarget.lastChild.childNodes.forEach((el)=>el.classList.toggle("hidden")) }}>
+                  {animal.title} <span><FontAwesomeIcon icon={faPlus} /><FontAwesomeIcon icon={faMinus} className="hidden"/></span>
+                </a>
+                <ul className="navbar-menu sub-menu hidden" id={animal.title}>
+                  {
+                    animal.categories.map((cat,index)=>(
+                      <li className="nav-item" key={index}>
+                        <a className="burger-menu-toggle" data-target={`${animal.title}-${index}`} onClick={(e)=>{document.querySelector(`#${e.currentTarget.dataset.target}`).classList.toggle("hidden");;e.currentTarget.lastChild.childNodes.forEach((el)=>el.classList.toggle("hidden"))}}>{cat.title} <span><FontAwesomeIcon icon={faPlus} /><FontAwesomeIcon icon={faMinus} className="hidden"/></span></a>
+                        <ul className="navbar-menu sub-menu hidden" id={`${animal.title}-${index}`}>
+                          {cat.sub_categories.map((sub_cat,index)=>(
+                            <li className="nav-item" key={index}>
+                              <a className="burger-menu-toggle" href={sub_cat.url}>{sub_cat.title}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </li>
+              )):null}
+            </ul>
+          </div>
       </div>
     </header>
   );

@@ -227,7 +227,7 @@ background-color: #eee;
 
 
 
-.list-group-item form button {
+.list-group-item form input {
     color: rgba(255, 255, 255, 1);
 background-color: rgba(89, 168, 144, 1);
 border-color: rgba(89, 168, 144, 1);

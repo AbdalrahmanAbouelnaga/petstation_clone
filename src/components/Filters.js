@@ -5,8 +5,6 @@ import { faSquareCheck } from "@fortawesome/free-solid-svg-icons"
 import React, { useEffect, useState } from "react"
 import { PriceSlider } from "./PriceSlider"
 const Filters = ({filters,urlParams}) => {
-
-
     
 
     const keys = Object.keys(filters)

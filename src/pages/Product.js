@@ -6,12 +6,16 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import '../styles/product.css'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { useSelector,useDispatch } from 'react-redux'
+import { addToCart } from '../store/slices/cartSlice'
 
 const Product = ()=>{
     const [urlParams,setUrlParams] = useSearchParams()
     const [product,setProduct] = useState({})
-    const [sizeIndex,setSizeIndex] = useState(0)
+    const [variantIndex,setVariantIndex] = useState(0)
     const [quantity,setQuantity] = useState(1)
+
+    const dispatch = useDispatch()
 
     useEffect(()=>{
         axios.get(window.location.pathname)
@@ -26,15 +30,15 @@ const Product = ()=>{
                     <img src={product.images[0].image} alt="" />
                 </div>
                 <div className="right">
-                    <p className="title">{product.title} - {product.variants[sizeIndex].size}</p>
-                    <p className="variant-price">${product.variants[sizeIndex].price} <span><FontAwesomeIcon icon={faCheckCircle} /> in Stock</span></p>
+                    <p className="title">{product.title} - {product.variants[variantIndex].size}</p>
+                    <p className="variant-price">${product.variants[variantIndex].price} <span><FontAwesomeIcon icon={faCheckCircle} /> in Stock</span></p>
                     {product.has_variants?(
                         <div className="size-container">
                             <div className="label">Select size</div>
                             <div className="size-list">
                                 {product.variants.map((variant,index)=>(
                                     <div id={`size-${index}`} className={`size-choice`} style={{width:`${100/product.variants.length}%`}} key={index}>
-                                        <a id={`${index}`} className={`size-text ${index === sizeIndex?"selected":""}`} onClick={(e)=>{setSizeIndex(parseInt(e.target.id))}}>{variant.size}</a>
+                                        <a id={`${index}`} className={`size-text ${index === variantIndex?"selected":""}`} onClick={(e)=>{setVariantIndex(parseInt(e.target.id))}}>{variant.size}</a>
                                     </div>
                                 ))}
                             </div>
@@ -55,7 +59,7 @@ const Product = ()=>{
                                     </a>
                                     <input id='qty-input' type="number" name='qty' value={quantity} onChange={(e)=>{setQuantity(parseInt(e.target.value)||1)}}/>
                                 </div>
-                                <button className='add-btn'>Add to Cart</button>
+                                <button className='add-btn' onClick={()=>dispatch(addToCart({product,quantity,variantIndex}))}>Add to Cart</button>
                                 <div className="wishlist">
                                     <a>
                                         <span>
